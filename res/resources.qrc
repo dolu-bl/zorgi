@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <!--qml-->
+        <file>qml/Main.qml</file>
+        <file>qml/SpaceView.qml</file>
+        <file>qml/PlayerView.qml</file>
+
+        <!--img-->
+        <file>img/ship01.svg</file>
+    </qresource>
+</RCC>
