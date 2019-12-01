@@ -1,8 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "model\spacemodel.h"
-#include "model\player.h"
+#include "model/spacemodel.h"
+#include "model/player.h"
 
 
 

@@ -11,13 +11,13 @@ SOURCES += src/main.cpp \
     src/model/player.cpp \
     src/model/item.cpp \
 
+HEADERS += \
+    src/model/spacemodel.h \
+    src/model/player.h \
+    src/model/item.h
+
 RESOURCES += res/resources.qrc
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-HEADERS += \
-    src/model/spacemodel.h \
-    src/model/player.h \
-    src/model/item.h
