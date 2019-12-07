@@ -22,5 +22,16 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
+    // Event filter installation to instance of SpaceModel.
+    for (auto rootObject : engine.rootObjects())
+    {
+        auto spaceModel = rootObject->findChild<SpaceModel*>("SpaceModelInstance");
+        if (nullptr == spaceModel)
+            continue;
+
+        app.installEventFilter(spaceModel);
+        break;
+    }
+
     return app.exec();
 }
