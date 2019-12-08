@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <!--qml-->
         <file>qml/Main.qml</file>
         <file>qml/SpaceView.qml</file>
         <file>qml/PlayerView.qml</file>
-
-        <!--img-->
         <file>img/ship01.svg</file>
+        <file>qml/LeftControlPanel.qml</file>
+        <file>qml/Styler.qml</file>
+        <file>qml/RightControlPanel.qml</file>
+        <file>qml/ControlButton.qml</file>
     </qresource>
 </RCC>
