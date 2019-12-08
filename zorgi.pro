@@ -7,11 +7,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 SOURCES += src/main.cpp \
+    src/misc/keyemitter.cpp \
     src/model/spacemodel.cpp \
     src/model/player.cpp \
     src/model/item.cpp \
 
 HEADERS += \
+    src/misc/keyemitter.h \
     src/model/spacemodel.h \
     src/model/player.h \
     src/model/item.h
