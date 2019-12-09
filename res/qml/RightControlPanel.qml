@@ -19,32 +19,32 @@ Rectangle
             Layout.columnSpan: 3
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭡"
+            text: "▲"
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭠"
+            text: "◀"
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭣"
+            text: "▼"
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭢"
+            text: "▶"
         }
         ControlButton
         {
             Layout.columnSpan: 3
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⯌"
+            text: "#"
         }
     }
 }

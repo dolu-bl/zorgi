@@ -23,3 +23,10 @@ RESOURCES += res/resources.qrc
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+# FEXME: hack to fix: can not find -lc++
+# https://evileg.com/ru/forum/topic/984/#post-5907
+android
+{
+    QMAKE_LFLAGS += -nostdlib++
+}

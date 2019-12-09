@@ -19,7 +19,7 @@ Rectangle
             Layout.columnSpan: 3
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭡"
+            text: "▲"
         }
         ControlButton
         {
@@ -32,7 +32,7 @@ Rectangle
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⭣"
+            text: "▼"
         }
         ControlButton
         {
@@ -46,7 +46,7 @@ Rectangle
             Layout.columnSpan: 3
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "⯌"
+            text: "*"
         }
     }
 }
