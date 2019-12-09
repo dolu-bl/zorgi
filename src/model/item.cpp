@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "item.h"
 
 
@@ -41,4 +43,20 @@ void Item::setSize(const QSize& size)
 
     m_size = size;
     emit sizeChanged(size);
+}
+
+
+
+float Item::direction() const
+{
+    return m_direction;
+}
+
+void Item::setDirection(const float direction)
+{
+    if (fabs(m_direction - direction) < std::numeric_limits<float>::epsilon())
+        return;
+
+    m_direction = direction;
+    emit directionChanged(direction);
 }
