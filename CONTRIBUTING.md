@@ -6,6 +6,8 @@
 * [Formatting](#formatting)
     * [Spacing and alignment](#spacing-and-alignment)
         * [Namespaces](#namespaces)
+        * [Brace location](#brace-location)
+        * [`if-else` statement](#if-else-statement)
         * [`switch` statement](#switch-statement)
 
 ## Intro
@@ -46,7 +48,7 @@ Logically different parts of the code should be separated by empty lines.
 
 Namespaces and code in it should be located at the same level.
 
-Correct code:
+&#x2705; Correct code:
 
 ```cpp
 namespace Database
@@ -63,7 +65,7 @@ class TransactionManager
 } // namespace Database
 ```
 
-Correct code:
+&#x2705; Correct code:
 
 ```cpp
 namespace
@@ -75,13 +77,125 @@ const QString SomeConstant = "SecretText";
 [toc](#table-of-contents)
 
 
+
+#### Brace location
+
+Curly braces should be placed on separate lines.
+
+&#x2705; Correct code:
+
+```cpp
+class MyFavoriteDialog : public QDialog
+{
+};
+```
+
+&#x2705; Correct code:
+
+```cpp
+if (condition)
+{
+    // do some magic
+}
+```
+
+The use of brackets in multi-level single-line operators is mandatory.
+
+&#x2705; Correct code:
+
+```cpp
+if (isAvaliable)
+{
+    if (isIncredible)
+        doSomethingTerrible();
+    else
+        doSomethingNice();
+}
+```
+
+&#x274C; Invalid code:
+
+```cpp
+if (isAvaliable)
+    if (isIncredible)
+        doSomethingTerrible();
+    else
+        doSomethingNice();
+```
+
+It is forbidden to write conditions and expressions in one line.
+
+&#x274C; Invalid code:
+
+```cpp
+int calculateRow() const { m_row = calculate(); return m_row; }
+int row() { return m_row; }
+```
+
+&#x274C; Invalid code:
+
+```cpp
+if (nullptr == item) return;
+if (!object->isValid()) continue;
+```
+
+[toc](#table-of-contents)
+
+
+
+#### `if-else` statement
+
+If one of the `if-else` statements is surrounded by curly braces, then the rest of the statements must be surrounded too.
+
+&#x2705; Correct code:
+
+```cpp
+if (auto item = createItem(context))
+{
+    item->setParent(parent);
+    item->process();
+}
+else
+{
+    finalize();
+}
+```
+
+&#x274C; Invalid code:
+
+```cpp
+if (auto item = createItem(context))
+{
+    item->setParent(parent);
+    item->process();
+}
+else
+    finalize();
+```
+
+Yoda notation is recommended. https://en.wikipedia.org/wiki/Yoda_conditions
+
+&#x2705; Correct code:
+
+```cpp
+if (nullptr == item)
+    return false;
+
+if (Qt::AscendingOrder == order)
+    sort();
+```
+
+[toc](#table-of-contents)
+
+
+
 #### `switch` statement
 
 `switch` statement and it `case` labels should be flush.
 
 If it necessary to define a new scope in `case` label, then brackets should be placed at the next level.
 
-Correct code:
+&#x2705; Correct code:
 
 ```cpp
 switch (type)
