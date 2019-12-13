@@ -303,3 +303,26 @@ default:
 ```
 
 [toc](#table-of-contents)
+
+
+
+### Preprocessor directives
+
+The preprocessor directives must not be indented and must begin at the beginning of the line.
+
+&#x2705; Correct code:
+
+```cpp
+int main()
+{
+    QApplication app();
+
+#ifdef EXTRA_LOG
+    qInfo() << "So, let go... we hope that everything will be fine...";
+#endif // EXTRA_LOG
+
+    return app.exec();
+}
+```
+
+[toc](#table-of-contents)
