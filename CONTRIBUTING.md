@@ -12,6 +12,12 @@
         * [`switch` statement](#switch-statement)
         * [Preprocessor directives](#preprocessor-directives)
     * [Naming conventions](#naming-conventions)
+        * [Files](#files)
+        * [Namespaces, Data Types, Enums and Constants](#namespaces-data-types-enums-and-constants)
+        * [Variables](#variables)
+        * [Methods and Functions](#methods-and-functions)
+            * [Accessors](#accessors)
+        * [Macro Definitions](#macro-definitions)
 
 ## Intro
 
@@ -214,8 +220,8 @@ It is forbidden to write conditions and expressions in one line.
 &#x274C; Invalid code:
 
 ```cpp
-int calculateRow() const { m_row = calculate(); return m_row; }
-int row() { return m_row; }
+int calculateRow() { m_row = calculate(); return m_row; }
+int row() const { return m_row; }
 ```
 
 &#x274C; Invalid code:
@@ -355,5 +361,142 @@ Long names should be used for entities with a long lifetime and short names for 
 | Class member            | Lower Camel Case with Prefix | m_value, m_targetScore       |
 | Variable                | Lower Camel Case             | value, targetScore           |
 | Macro Definition        | Upper Case with Underscores  | FUNCTION_MAKER               |
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Files
+
+File names should contain only lowercase characters.
+
+All file names used in the code must be strictly case-sensitive to the names in the file system.
+
+Examples of errors:
+
+File name — `MainWindow.h`
+In code: `#include "mainwindow.h"`
+
+The path — `./Logs`
+In code: `QString path = "./logs";`
+
+&#x2705; Exceptions:
+```
+CMakeLists.txt
+CONTRIBUTING.md
+LICENSE
+README.md
+```
+and QML Modules, for example `ModuleName.qml`
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Namespaces, Data Types, Enums and Constants
+
+Names of namespaces, data types, enumeration values and constants must begin with an uppercase character, each new word in a type name must also begin with an uppercase character.
+
+Names must not contain underscores.
+
+&#x2705; Correct code:
+
+```cpp
+namespace DataLayer
+{
+}
+
+class Logger;
+struct MessageInfo;
+
+enum Qt::SortOrder
+{
+    AscendingOrder = 0,
+    DescendingOrder = 1,
+};
+
+typedef QVector<QVector<Item>> ItemMatrix;
+```
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Variables
+
+The first word in the variable name must begin with a lowercase character, and each subsequent word with a capital letter.
+
+Class members must begin with the `m_` prefix.
+
+It is not recommended to duplicate its type in the variable name, it is better to use the plural, in this case.
+
+&#x2705; Correct code:
+
+```cpp
+QList<Items> items;
+```
+
+&#x274C; Invalid code:
+
+```cpp
+QList<Items> list;
+```
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Methods and Functions
+
+The names of methods and functions must be verbs.
+
+&#x2705; Correct code:
+
+```cpp
+class LogicItem
+{
+public:
+    void setValue(const QVariant& value);
+    QVariant calculate() const;
+
+public slots:
+    void onTargetChanged();
+
+};
+```
+
+[Table Of Contents](#table-of-contents)
+
+
+
+#### Accessors
+
+Setter names must begin with the `set` prefix.
+
+Getter names are written without a prefix.
+
+&#x2705; Correct code:
+
+```cpp
+class MegaLogicItem
+{
+public:
+    void setValue(const QVariant& value);
+    QVariant value() const;
+
+private:
+    QVariant m_value;
+};
+```
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Macro Definitions
+
+Macro names must be written in all capital letters.
+
+An underscore must be used as a word separator.
 
 [Table Of Contents](#table-of-contents)
