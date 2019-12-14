@@ -10,6 +10,8 @@
         * [Brace location](#brace-location)
         * [`if-else` statement](#if-else-statement)
         * [`switch` statement](#switch-statement)
+        * [Preprocessor directives](#preprocessor-directives)
+      * [Naming conventions](#naming-conventions)
 
 ## Intro
 
@@ -21,7 +23,7 @@ It is also necessary to bring already written code to the standard, if work is b
 
 This will increase the information content of the code while reading and facilitate its support, help to avoid common mistakes.
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -92,7 +94,7 @@ if(isGood&&!isBad)
 void foo (const int firstValue,const int lastValue);
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -124,7 +126,7 @@ Item * itemByName(const QString &name, bool *isAlone = nullptr);
 typedef QVector<Item *> ItemsContainer;
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -158,7 +160,7 @@ const QString SomeConstant = "SecretText";
 } // namespace
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -223,7 +225,7 @@ if (nullptr == item) return;
 if (!object->isValid()) continue;
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -269,7 +271,7 @@ if (Qt::AscendingOrder == order)
     sort();
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -302,7 +304,7 @@ default:
 }
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
 
 
 
@@ -325,4 +327,33 @@ int main()
 }
 ```
 
-[toc](#table-of-contents)
+:scroll: [Table Of Contents](#table-of-contents)
+
+
+
+## Naming conventions
+
+Names must comply with the following rules:
+
+* The name should be compact and informative.
+* The components of the name should not contain spelling errors.
+* The same logical entities in the project should be called the same.
+* Avoid using prepositions, conjunctions, articles in names.
+
+Names should be as informative as is appropriate in order to describe the purpose and behavior of the entity.
+
+Long names should be used for entities with a long lifetime and short names for entities with a short lifetime.
+
+| Entity                  | Style                        | Example                      |
+| ----------------------- | ---------------------------- | ---------------------------- |
+| File                    | Lower Case                   | mainwindow.cpp, mainwindow.h |
+| Type                    | Upper Camel Case             | MainWindow                   |
+| Namespace               | Upper Camel Case             | Widgets                      |
+| Constant                | Upper Camel Case             | MagicNumberConstant          |
+| Enum                    | Upper Camel Case             | Qt::AlignmentFlag            |
+| Function/method         | Lower Camel Case             | setValue()                   |
+| Class member            | Lower Camel Case with Prefix | m_value, m_targetScore       |
+| Variable                | Lower Camel Case             | value, targetScore           |
+| Macro Definition        | Upper Case with Underscores  | FUNCTION_MAKER               |
+
+:scroll: [Table Of Contents](#table-of-contents)
