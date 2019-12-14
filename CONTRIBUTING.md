@@ -11,7 +11,7 @@
         * [`if-else` statement](#if-else-statement)
         * [`switch` statement](#switch-statement)
         * [Preprocessor directives](#preprocessor-directives)
-      * [Naming conventions](#naming-conventions)
+    * [Naming conventions](#naming-conventions)
 
 ## Intro
 
@@ -23,7 +23,7 @@ It is also necessary to bring already written code to the standard, if work is b
 
 This will increase the information content of the code while reading and facilitate its support, help to avoid common mistakes.
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -94,7 +94,7 @@ if(isGood&&!isBad)
 void foo (const int firstValue,const int lastValue);
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -126,7 +126,7 @@ Item * itemByName(const QString &name, bool *isAlone = nullptr);
 typedef QVector<Item *> ItemsContainer;
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -160,7 +160,7 @@ const QString SomeConstant = "SecretText";
 } // namespace
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -225,7 +225,7 @@ if (nullptr == item) return;
 if (!object->isValid()) continue;
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -271,7 +271,7 @@ if (Qt::AscendingOrder == order)
     sort();
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -304,7 +304,7 @@ default:
 }
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -327,7 +327,7 @@ int main()
 }
 ```
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
 
 
 
@@ -356,4 +356,4 @@ Long names should be used for entities with a long lifetime and short names for 
 | Variable                | Lower Camel Case             | value, targetScore           |
 | Macro Definition        | Upper Case with Underscores  | FUNCTION_MAKER               |
 
-:scroll: [Table Of Contents](#table-of-contents)
+[Table Of Contents](#table-of-contents)
