@@ -25,6 +25,10 @@ work in progress
 * Android SDK 26
 * Android NDK 20
 
+## Development assistance
+
+Please check the [Contribution guide](https://github.com/dolu-bl/zorgi/blob/master/CONTRIBUTING.md).
+
 ## License
 
 [GNU General Public License v3.0](https://github.com/dolu-bl/zorgi/blob/master/LICENSE)
