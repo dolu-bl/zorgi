@@ -1,12 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/Main.qml</file>
-        <file>qml/SpaceView.qml</file>
-        <file>qml/PlayerView.qml</file>
         <file>img/ship01.svg</file>
-        <file>qml/LeftControlPanel.qml</file>
+        <file>img/asteroid01.svg</file>
+        <file>qml/Main.qml</file>
         <file>qml/Styler.qml</file>
-        <file>qml/RightControlPanel.qml</file>
-        <file>qml/ControlButton.qml</file>
+        <file>qml/Model/qmldir</file>
+        <file>qml/Model/SpaceView.qml</file>
+        <file>qml/Model/PlayerView.qml</file>
+        <file>qml/Model/AsteroidView.qml</file>
+        <file>qml/Controls/qmldir</file>
+        <file>qml/Controls/LeftControlPanel.qml</file>
+        <file>qml/Controls/RightControlPanel.qml</file>
+        <file>qml/Controls/ControlButton.qml</file>
     </qresource>
 </RCC>

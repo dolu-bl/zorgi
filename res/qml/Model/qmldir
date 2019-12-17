@@ -1,0 +1,4 @@
+module Model
+SpaceView 1.0 SpaceView.qml
+PlayerView 1.0 PlayerView.qml
+AsteroidView 1.0 AsteroidView.qml

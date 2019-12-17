@@ -1,0 +1,3 @@
+module Controls
+LeftControlPanel 1.0 LeftControlPanel.qml
+RightControlPanel 1.0 RightControlPanel.qml
