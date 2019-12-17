@@ -1,103 +1,110 @@
 #include <QDebug>
-#include <QKeyEvent>
-#include <QEvent>
-#include <QVariant>
+#include <QTimer>
+#include <QRandomGenerator>
 
 #include "spacemodel.h"
 #include "player.h"
+#include "asteroid.h"
 
 
 
 SpaceModel::SpaceModel(QObject* parent)
     : QObject(parent)
-    , m_player(new Player(this))
+    , m_mainTimer(new QTimer(this))
 {
     setObjectName("SpaceModelInstance");
-    connect(m_player, &Player::positionChanged, this, &SpaceModel::onPlayerPositionChanged);
+    fillData();
+    connect(m_mainTimer, &QTimer::timeout, this, &SpaceModel::onMainTimer);
+    m_mainTimer->start(100);
 }
 
 SpaceModel::~SpaceModel()
 {
 }
 
-Player* SpaceModel::player() const
+
+
+int SpaceModel::itemsCount() const
 {
-    return m_player;
+    return m_items.size();
 }
 
-bool SpaceModel::eventFilter(QObject* watched, QEvent* event)
+Item* SpaceModel::item(int i) const
 {
-    if (event->type() == QEvent::KeyPress)
-        return keyPressEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
+    if (m_items.size() <= i || 0 > i)
+        return nullptr;
 
-    if (event->type() == QEvent::KeyRelease)
-        return keyReleaseEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
-
-    return QObject::eventFilter(watched, event);
+    return m_items.at(i);
 }
 
-void SpaceModel::onPlayerPositionChanged(const QVector2D& position)
+QVector<Item*> SpaceModel::items() const
 {
-    Q_UNUSED(position)
-    // TODO : do some thing
+    return m_items;
 }
 
-bool SpaceModel::keyPressEventFilter(QObject* watched, QKeyEvent* event)
-{
-    if (nullptr == event || event->isAutoRepeat())
-        return QObject::eventFilter(watched, event);
 
-    switch (event->key())
+
+QVector<Player*> SpaceModel::players() const
+{
+    QVector<Player*> result;
+    for (auto item : m_items)
     {
-    case Qt::Key_Left:
-        m_player->moveLeft();
-        return true;
+        if (auto player = qobject_cast<Player*>(item))
+            result.append(player);
+    }
+    return result;
+}
 
-    case Qt::Key_Right:
-        m_player->moveRight();
-        return true;
 
-    case Qt::Key_W:
-    case Qt::Key_Up:
-        m_player->moveUp();
-        return true;
 
-    case Qt::Key_S:
-    case Qt::Key_Down:
-        m_player->moveDown();
-        return true;
+void SpaceModel::onMainTimer()
+{
+    for (auto item : m_items)
+        item->updateAnamation();
 
-    case Qt::Key_A:
-        m_player->startTurn(Qt::LeftArrow);
-        return true;
+    // TODO : Add world events here
+}
 
-    case Qt::Key_D:
-        m_player->startTurn(Qt::RightArrow);
-        return true;
 
-    default:
-        break;
+
+void SpaceModel::fillData()
+{
+    auto player = new Player(this);
+    player->setPosition(QVector2D(0, 0));
+    m_items.append(player);
+
+    {
+        auto asteroid = new Asteroid();
+        asteroid->setPosition(QVector2D(200, 200));
+        m_items.append(asteroid);
+    }
+    {
+        auto asteroid = new Asteroid();
+        asteroid->setPosition(QVector2D(-200, 200));
+        m_items.append(asteroid);
+    }
+    {
+        auto asteroid = new Asteroid();
+        asteroid->setPosition(QVector2D(200, -200));
+        m_items.append(asteroid);
+    }
+    {
+        auto asteroid = new Asteroid();
+        asteroid->setPosition(QVector2D(-200, -200));
+        m_items.append(asteroid);
     }
 
-    return QObject::eventFilter(watched, event);
-}
-
-bool SpaceModel::keyReleaseEventFilter(QObject* watched, QKeyEvent* event)
-{
-    if (nullptr == event || event->isAutoRepeat())
-        return QObject::eventFilter(watched, event);
-
-    switch (event->key())
+    QRandomGenerator generator(108);
+    for (int i = 0; i < 1000; ++i)
     {
-    case Qt::Key_A:
-    case Qt::Key_D:
-        m_player->stopTurn();
-        return true;
+        auto asteroid = new Asteroid();
+        const int x = generator.bounded(-2000, 2000);
+        const int y = generator.bounded(-2000, 2000);
+        const QVector2D position(x, y);
+        if (300 > position.distanceToPoint(player->position()))
+            continue;
 
-    default:
-        break;
+        asteroid->setPosition(position);
+        m_items.append(asteroid);
     }
-
-    return QObject::eventFilter(watched, event);
 }
-
