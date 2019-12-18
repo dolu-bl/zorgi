@@ -14,8 +14,12 @@ Window
     id : root
 
     visible: true
+
     width: 640
     height: 480
+    minimumWidth: 640
+    minimumHeight: 480
+
     title: qsTr("Zorgi")
     color: styler.bordersColor
 
@@ -24,6 +28,7 @@ Window
         anchors.fill: parent
         flow: GridLayout.LeftToRight
         columnSpacing: 0
+        rowSpacing: 0
 
         LeftControlPanel
         {

@@ -2,7 +2,6 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.12
 
 
-
 Rectangle
 {
     id: root
@@ -13,6 +12,8 @@ Rectangle
         id: grid
         columns: 2
         anchors.fill: parent
+        columnSpacing: 0
+        rowSpacing: 0
 
         ControlButton
         {
@@ -20,21 +21,21 @@ Rectangle
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▲"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_W, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_W, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "◀"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_A, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_A, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▶"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_D, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_D, isPressed)
         }
         ControlButton
         {
@@ -42,7 +43,7 @@ Rectangle
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▼"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_S, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_S, isPressed)
         }
         ControlButton
         {

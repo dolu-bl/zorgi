@@ -13,6 +13,8 @@ Rectangle
         id: grid
         columns: 2
         anchors.fill: parent
+        columnSpacing: 0
+        rowSpacing: 0
 
         ControlButton
         {
@@ -20,21 +22,21 @@ Rectangle
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▲"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_Up, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Up, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "↶"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_Left, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Left, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "↷"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_Right, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Right, isPressed)
         }
         ControlButton
         {
@@ -42,7 +44,7 @@ Rectangle
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▼"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_Down, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Down, isPressed)
         }
         ControlButton
         {
