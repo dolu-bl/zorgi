@@ -18,6 +18,10 @@
         * [Methods and Functions](#methods-and-functions)
             * [Accessors](#accessors)
         * [Macro Definitions](#macro-definitions)
+* [Files](#files)
+    * [Declaration and implementation](#declaration-and-implementation)
+    * [How to include header files](#how-to-include-header-files)
+    * [Include guards](#include-guards)
 
 ## Intro
 
@@ -229,6 +233,16 @@ int row() const { return m_row; }
 ```cpp
 if (nullptr == item) return;
 if (!object->isValid()) continue;
+```
+
+For an empty virtual destructor, curly brackets are allowed on the same line.
+But it is preferable in this situation to use the keyword `default`.
+
+&#x2705; Correct code:
+
+```cpp
+virtual ~MainWindow() {}
+virtual ~MainWindow() = default;
 ```
 
 [Table Of Contents](#table-of-contents)
@@ -498,5 +512,86 @@ private:
 Macro names must be written in all capital letters.
 
 An underscore must be used as a word separator.
+
+[Table Of Contents](#table-of-contents)
+
+
+
+## Files
+
+All files must use **UTF-8** encoding without BOM tags.
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Declaration and implementation
+
+Declaration in h-files, implementation in cpp-files.
+
+It is strongly discouraged to describe the implementation of classes/functions in the header files, which leads to greater coherence of the project files and unnecessary dependencies.
+
+Header files should only provide information about the methods available, the classes and libraries used.
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### How to include header files
+
+Follow the specified order:
+
+1. Main Framework Files (Qt for example)
+1. Standard Library Files
+1. Boost Files
+1. External Library Files
+1. Own Project Files
+
+&#x2705; Correct code:
+
+```cpp
+#include <QHash>
+#include <QDialog>
+
+#include <map>
+#include <vector>
+
+#include <boost/algorithm/string.hpp>
+#include <boost/numeric/ublas/vector.hpp>
+
+#include <Poco/zlib.h>
+
+#include "model.h"
+#include "model_item.h"
+```
+
+[Table Of Contents](#table-of-contents)
+
+
+
+### Include guards
+
+All header files must have include guards.
+
+Include guard format: `PATH_FILENAME_H`
+
+&#x2705; Correct code for file `model/item.h`:
+
+```cpp
+#ifndef MODEL_ITEM_H
+#define MODEL_ITEM_H
+
+#endif // MODEL_ITEM_H
+```
+
+Only the file name and extension are allowed in the macro name.
+
+It is allowed to use the `#pragma once` statement.
+
+&#x2705; Correct code:
+
+```cpp
+#pragma once
+```
 
 [Table Of Contents](#table-of-contents)
