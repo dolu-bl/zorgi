@@ -32,8 +32,6 @@ public:
     QVector2D mapToModel(const QVector2D& position) const;
     QSize mapToModel(const QSize& size) const;
 
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
-
     Q_INVOKABLE int proxyItemsQuantity() const;
     Q_INVOKABLE ProxyItem* proxyItem(const int index) const;
 
@@ -52,10 +50,6 @@ signals:
 
 public slots:
     void onViewSizeChanged(const int width, const int height);
-
-private:
-    bool keyPressEventFilter(QObject* watched, QKeyEvent* event);
-    bool keyReleaseEventFilter(QObject* watched, QKeyEvent* event);
 
 private:
     SpaceModel* m_model = nullptr;

@@ -1,4 +1,6 @@
 #include <QDebug>
+#include <QEvent>
+#include <QKeyEvent>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
@@ -62,11 +64,22 @@ Game::Game(QObject* parent)
     m_model = new SpaceModel(this);
     m_proxy = new SpaceProxy(this);
     m_proxy->setModel(m_model);
-    QCoreApplication::instance()->installEventFilter(m_proxy);
+    QCoreApplication::instance()->installEventFilter(this);
 }
 
 Game::~Game()
 {
+}
+
+bool Game::eventFilter(QObject* watched, QEvent* event)
+{
+    if (event->type() == QEvent::KeyPress)
+        return keyPressEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
+
+    if (event->type() == QEvent::KeyRelease)
+        return keyReleaseEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
+
+    return QObject::eventFilter(watched, event);
 }
 
 SpaceModel* Game::model() const
@@ -77,4 +90,85 @@ SpaceModel* Game::model() const
 SpaceProxy* Game::proxy() const
 {
     return m_proxy;
+}
+
+
+
+bool Game::keyPressEventFilter(QObject* watched, QKeyEvent* event)
+{
+    if (nullptr == event || event->isAutoRepeat())
+        return QObject::eventFilter(watched, event);
+
+    auto player = m_proxy->player();
+    switch (event->key())
+    {
+    case Qt::Key_Left:
+        player->startTurn(Qt::LeftArrow);
+        return true;
+
+    case Qt::Key_Right:
+        player->startTurn(Qt::RightArrow);
+        return true;
+
+    case Qt::Key_W:
+    case Qt::Key_Up:
+        player->startMove(Qt::UpArrow);
+        return true;
+
+    case Qt::Key_S:
+    case Qt::Key_Down:
+        player->startMove(Qt::DownArrow);
+        return true;
+
+    case Qt::Key_A:
+        player->startMove(Qt::LeftArrow);
+        return true;
+
+    case Qt::Key_D:
+        player->startMove(Qt::RightArrow);
+        return true;
+
+    default:
+        break;
+    }
+
+    return QObject::eventFilter(watched, event);
+}
+
+bool Game::keyReleaseEventFilter(QObject* watched, QKeyEvent* event)
+{
+    if (nullptr == event || event->isAutoRepeat())
+        return QObject::eventFilter(watched, event);
+
+    auto player = m_proxy->player();
+    switch (event->key())
+    {
+    case Qt::Key_Left:
+    case Qt::Key_Right:
+        player->stopTurn();
+        return true;
+
+    case Qt::Key_W:
+    case Qt::Key_Up:
+        player->stopMove(Qt::UpArrow);
+        return true;
+
+    case Qt::Key_S:
+    case Qt::Key_Down:
+        player->stopMove(Qt::DownArrow);
+        return true;
+
+    case Qt::Key_A:
+        player->stopMove(Qt::LeftArrow);
+        return true;
+
+    case Qt::Key_D:
+        player->stopMove(Qt::RightArrow);
+        return true;
+
+    default:
+        break;
+    }
+
+    return QObject::eventFilter(watched, event);
 }

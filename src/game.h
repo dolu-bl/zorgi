@@ -2,6 +2,8 @@
 
 #include <QObject>
 
+class QEvent;
+class QKeyEvent;
 class QGuiApplication;
 class QQmlApplicationEngine;
 
@@ -24,11 +26,18 @@ public:
     virtual ~Game() override;
 
 public:
+    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+
+public:
     Q_INVOKABLE SpaceModel* model() const;
     Q_INVOKABLE SpaceProxy* proxy() const;
 
 private:
     static QQmlApplicationEngine* m_engine;
+
+private:
+    bool keyPressEventFilter(QObject* watched, QKeyEvent* event);
+    bool keyReleaseEventFilter(QObject* watched, QKeyEvent* event);
 
 private:
     SpaceModel* m_model;

@@ -1,7 +1,3 @@
-#include <QDebug>
-#include <QEvent>
-#include <QKeyEvent>
-
 #include "model/spacemodel.h"
 #include "model/player.h"
 
@@ -92,19 +88,6 @@ QSize SpaceProxy::mapToModel(const QSize& size) const
 
 
 
-bool SpaceProxy::eventFilter(QObject* watched, QEvent* event)
-{
-    if (event->type() == QEvent::KeyPress)
-        return keyPressEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
-
-    if (event->type() == QEvent::KeyRelease)
-        return keyReleaseEventFilter(watched, dynamic_cast<QKeyEvent*>(event));
-
-    return QObject::eventFilter(watched, event);
-}
-
-
-
 int SpaceProxy::proxyItemsQuantity() const
 {
     return m_proxyItems.size();
@@ -165,83 +148,4 @@ QRect SpaceProxy::visibleItemsRect() const
 void SpaceProxy::onViewSizeChanged(const int width, const int height)
 {
     setViewSize(QSize(width, height));
-}
-
-
-
-bool SpaceProxy::keyPressEventFilter(QObject* watched, QKeyEvent* event)
-{
-    if (nullptr == event || event->isAutoRepeat())
-        return QObject::eventFilter(watched, event);
-
-    switch (event->key())
-    {
-    case Qt::Key_Left:
-        m_player->startTurn(Qt::LeftArrow);
-        return true;
-
-    case Qt::Key_Right:
-        m_player->startTurn(Qt::RightArrow);
-        return true;
-
-    case Qt::Key_W:
-    case Qt::Key_Up:
-        m_player->startMove(Qt::UpArrow);
-        return true;
-
-    case Qt::Key_S:
-    case Qt::Key_Down:
-        m_player->startMove(Qt::DownArrow);
-        return true;
-
-    case Qt::Key_A:
-        m_player->startMove(Qt::LeftArrow);
-        return true;
-
-    case Qt::Key_D:
-        m_player->startMove(Qt::RightArrow);
-        return true;
-
-    default:
-        break;
-    }
-
-    return QObject::eventFilter(watched, event);
-}
-
-bool SpaceProxy::keyReleaseEventFilter(QObject* watched, QKeyEvent* event)
-{
-    if (nullptr == event || event->isAutoRepeat())
-        return QObject::eventFilter(watched, event);
-
-    switch (event->key())
-    {
-    case Qt::Key_Left:
-    case Qt::Key_Right:
-        m_player->stopTurn();
-        return true;
-
-    case Qt::Key_W:
-    case Qt::Key_Up:
-        m_player->stopMove(Qt::UpArrow);
-        return true;
-
-    case Qt::Key_S:
-    case Qt::Key_Down:
-        m_player->stopMove(Qt::DownArrow);
-        return true;
-
-    case Qt::Key_A:
-        m_player->stopMove(Qt::LeftArrow);
-        return true;
-
-    case Qt::Key_D:
-        m_player->stopMove(Qt::RightArrow);
-        return true;
-
-    default:
-        break;
-    }
-
-    return QObject::eventFilter(watched, event);
 }
