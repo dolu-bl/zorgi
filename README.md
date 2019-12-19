@@ -27,7 +27,7 @@ work in progress
 
 ## Development assistance
 
-Please check the [Contribution guide](https://github.com/dolu-bl/zorgi/blob/master/CONTRIBUTING.md).
+Please check the [Contribution guide](https://github.com/dolu-bl/zorgi/blob/master/CONTRIBUTING.md) and  [Contributor Covenant Code of Conduct](https://github.com/dolu-bl/zorgi/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
