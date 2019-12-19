@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Shapes 1.12
 
-import Zorgi 1.0
 
 
 Shape
@@ -20,5 +19,12 @@ Shape
         sourceSize.width: width
         sourceSize.height: height
         anchors.fill: parent
+        rotation: -90
+    }
+
+    function onSizeChanged(size)
+    {
+        root.width = size.width;
+        root.height = size.height;
     }
 }

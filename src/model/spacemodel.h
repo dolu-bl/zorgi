@@ -1,14 +1,11 @@
 #pragma once
 
 #include <QObject>
-#include <QSize>
+#include <QVector2D>
 
-#include <vector>
-#include <memory>
+class QTimer;
 
-class QEvent;
-class QKeyEvent;
-
+class Item;
 class Player;
 
 
@@ -22,21 +19,21 @@ public:
     virtual ~SpaceModel() override;
 
 public:
-    Q_INVOKABLE Player* player() const;
+    Q_INVOKABLE int itemsCount() const;
+    Q_INVOKABLE Item* item(int i) const;
+    Q_INVOKABLE QVector<Item*> items() const;
 
-    virtual bool eventFilter(QObject* watched, QEvent* event) override;
+    Q_INVOKABLE QVector<Player*> players() const;
 
 private slots:
-    void onPlayerPositionChanged(const QVector2D& position);
+    void onMainTimer();
 
 private:
-    bool keyPressEventFilter(QObject* watched, QKeyEvent* event);
-    bool keyReleaseEventFilter(QObject* watched, QKeyEvent* event);
+    // TODO : move fileData() to another entity
+    void fillData();
 
 private:
-    Player* m_player;
-
-    QSize m_levelSize;
-    QSize m_viewSize;
+    QVector<Item*> m_items;
+    QTimer* m_mainTimer = nullptr;
 
 };

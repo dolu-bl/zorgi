@@ -11,42 +11,47 @@ Rectangle
     GridLayout
     {
         id: grid
-        columns: 3
+        columns: 2
         anchors.fill: parent
+        columnSpacing: 0
+        rowSpacing: 0
 
         ControlButton
         {
-            Layout.columnSpan: 3
+            Layout.columnSpan: 2
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "▲"
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Up, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "↶"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_A, pressed)
-        }
-        ControlButton
-        {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            text: "▼"
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Left, isPressed)
         }
         ControlButton
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             text: "↷"
-            onPressedChanged: keyEmitter.emitKey(Qt.Key_D, pressed)
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Right, isPressed)
         }
         ControlButton
         {
-            Layout.columnSpan: 3
+            Layout.columnSpan: 2
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: "*"
+            text: "▼"
+            onIsPressedChanged: keyEmitter.emitKey(Qt.Key_Down, isPressed)
+        }
+        ControlButton
+        {
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            text: "#"
         }
     }
 }
