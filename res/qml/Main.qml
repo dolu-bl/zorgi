@@ -21,34 +21,59 @@ Window
     minimumHeight: 480
 
     title: qsTr("Zorgi")
-    color: styler.bordersColor
+    color: styler.backgroundColor
 
-    GridLayout
+    MainMenu
     {
-        anchors.fill: parent
-        flow: GridLayout.LeftToRight
-        columnSpacing: 0
-        rowSpacing: 0
+        id: menu
+        visible: true
+        focus: true
+        opacity: 100
 
-        LeftControlPanel
+        anchors.fill: parent
+        anchors.centerIn: parent
+        onStartRequested: function()
         {
-            z: 10
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            menu.visible = false;
+            gameView.visible = true;
         }
-        SpaceView
+
+        onSettingsRequested: function()
         {
-            z: 1
-            id: spaceView
-            width: height
-            Layout.fillHeight: true
-            Layout.minimumWidth: height
+            menu.visible = false;
+            settingsMenu.visible = true;
         }
-        RightControlPanel
+    }
+
+    GameView
+    {
+        id: gameView
+        visible: false
+        focus: false
+
+        anchors.fill: parent
+        anchors.centerIn: parent
+    }
+
+    SettingsMenu
+    {
+        id: settingsMenu
+        visible: false
+        focus: false
+
+        anchors.fill: parent
+        anchors.centerIn: parent
+
+        onSetRequested: function()
         {
-            z: 10
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            menu.visible = true;
+            settingsMenu.visible = false;
+        }
+
+        onBackRequested: function()
+        {
+            menu.visible = true;
+            settingsMenu.visible = false;
         }
     }
 
