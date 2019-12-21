@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
+import Qt.labs.settings 1.0
 
 import Controls 1.0
 
@@ -40,7 +41,8 @@ Rectangle
 
         GameMenuCheckBox
         {
-            text : qsTr("auto stabilization")
+            id: autoStabilization
+            text: qsTr("auto stabilization")
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
@@ -48,22 +50,27 @@ Rectangle
         GameMenuCheckBox
         {
             // TODO : place real setting
-            text : qsTr("yet another setting")
+            text: qsTr("yet another setting")
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
 
         GameMenuItem
         {
-            text : qsTr("accept")
+            text: qsTr("accept")
             Layout.fillWidth: true
             Layout.fillHeight: true
-            onRequested: root.setRequested()
+            onRequested: function()
+            {
+                settings.setValue("General/autoStabilization", autoStabilization.value ? "1" : "0");
+                settings.sync();
+                root.setRequested()
+            }
         }
 
         GameMenuItem
         {
-            text : qsTr("back")
+            text: qsTr("back")
             Layout.fillWidth: true
             Layout.fillHeight: true
             onRequested: root.backRequested()
@@ -86,4 +93,18 @@ Rectangle
         }
 
     } // ColumnLayout
+
+    Settings
+    {
+        id: settings
+    }
+
+    onVisibleChanged: function()
+    {
+        if (!visible)
+            return;
+
+        autoStabilization.value = (settings.value("General/autoStabilization", "0") === "1");
+    }
+
 }

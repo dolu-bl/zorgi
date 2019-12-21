@@ -15,6 +15,7 @@ Rectangle
     color: styler.buttonsBackgroundColor
 
     property alias text: textLabel.text
+    property alias value: checkBox.checked
 
     Rectangle
     {
