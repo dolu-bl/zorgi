@@ -1,9 +1,13 @@
 <RCC>
     <qresource prefix="/">
+        <file>img/zorgi.svg</file>
         <file>img/ship01.svg</file>
         <file>img/asteroid01.svg</file>
         <file>qml/Main.qml</file>
+        <file>qml/MainMenu.qml</file>
         <file>qml/Styler.qml</file>
+        <file>qml/GameView.qml</file>
+        <file>qml/SettingsMenu.qml</file>
         <file>qml/Model/qmldir</file>
         <file>qml/Model/SpaceView.qml</file>
         <file>qml/Model/PlayerView.qml</file>
@@ -12,5 +16,7 @@
         <file>qml/Controls/LeftControlPanel.qml</file>
         <file>qml/Controls/RightControlPanel.qml</file>
         <file>qml/Controls/ControlButton.qml</file>
+        <file>qml/Controls/GameMenuItem.qml</file>
+        <file>qml/Controls/GameMenuCheckBox.qml</file>
     </qresource>
 </RCC>

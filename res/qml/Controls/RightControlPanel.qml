@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 Rectangle
 {
     id: root
-    color: styler.bordersColor
+    color: styler.backgroundColor
 
     GridLayout
     {

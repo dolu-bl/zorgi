@@ -11,6 +11,11 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication application(argc, argv);
+    application.setOrganizationName("zorgiware");
+    application.setOrganizationDomain("zorgiware.com");
+    application.setApplicationName("zorgi");
+
     Game::init();
+
     return application.exec();
 }
