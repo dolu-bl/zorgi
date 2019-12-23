@@ -49,8 +49,8 @@ Rectangle
 
         GameMenuCheckBox
         {
-            // TODO : place real setting
-            text: qsTr("yet another setting")
+            id: music
+            text: qsTr("music")
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
@@ -62,8 +62,9 @@ Rectangle
             Layout.fillHeight: true
             onRequested: function()
             {
-                settings.setValue("General/autoStabilization", autoStabilization.value ? "1" : "0");
-                settings.sync();
+                settings.autoStabilization = autoStabilization.value;
+                settings.music = music.value;
+                settings.write();
                 root.setRequested()
             }
         }
@@ -94,17 +95,13 @@ Rectangle
 
     } // ColumnLayout
 
-    Settings
-    {
-        id: settings
-    }
-
     onVisibleChanged: function()
     {
         if (!visible)
             return;
 
-        autoStabilization.value = (settings.value("General/autoStabilization", "0") === "1");
+        autoStabilization.value = settings.autoStabilization;
+        music.value = settings.music;
     }
 
 }
