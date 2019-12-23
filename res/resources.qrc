@@ -3,6 +3,8 @@
         <file>img/zorgi.svg</file>
         <file>img/ship01.svg</file>
         <file>img/asteroid01.svg</file>
+        <file>snd/music01.wav</file>
+        <file>snd/music02.wav</file>
         <file>qml/Main.qml</file>
         <file>qml/MainMenu.qml</file>
         <file>qml/Styler.qml</file>
